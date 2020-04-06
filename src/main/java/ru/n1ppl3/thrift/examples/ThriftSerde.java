@@ -25,10 +25,10 @@ public abstract class ThriftSerde {
     /**
      * bytes to thriftObject
      */
-    public static <F extends TFieldIdEnum, E extends TBase<?,F>> E deserialize(byte[] bytes, Class<E> _class) throws TException {
+    public static <F extends TFieldIdEnum, T extends TBase<T,F>> T deserialize(byte[] bytes, Class<T> _class) throws TException {
         try {
-            Constructor<E> constructor = ReflectionUtils.accessibleConstructor(_class);
-            E instance = constructor.newInstance();
+            Constructor<T> constructor = ReflectionUtils.accessibleConstructor(_class);
+            T instance = constructor.newInstance();
             tDeserializer.deserialize(instance, bytes);
             return instance;
         } catch (ReflectiveOperationException e) {
