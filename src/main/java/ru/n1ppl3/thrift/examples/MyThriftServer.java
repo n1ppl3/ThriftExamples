@@ -15,8 +15,9 @@ public class MyThriftServer {
 
         TServerTransport serverTransport = new TServerSocket(9090);
         try {
-            TServer.Args serverArgs = new TServer.Args(serverTransport);
-            TServer server = new TSimpleServer(serverArgs.processor(processor));
+            TServer.Args serverArgs = new TServer.Args(serverTransport)
+                .processor(processor);
+            TServer server = new TSimpleServer(serverArgs);
             System.out.println("Starting the simple server...");
             server.serve();
         } finally {
